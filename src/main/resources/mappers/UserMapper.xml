@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.store.mapper.UserMapper">
+	<!-- 插入用户数据 -->
+	<!-- Integer insert(User user) -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="uid">
+		 INSERT INTO t_user (
+		 	username,password,salt,avatar,phone,email,is_delete,created_user,created_time,modified_user,modified_time
+		 )VALUES(
+			 #{username},#{password},#{salt},#{avatar},#{phone},#{email},#{isDelete},#{createdUser},#{createdTime},#{modifiedUser},#{modifiedTime}
+		 )
+	</insert>
+	
+	<!-- 根据用户名查询用户数据 -->
+	<!-- User findByUsername(String username) -->
+	<select id="findByUsername" resultType="cn.tedu.store.entity.User">
+		SELECT uid,password,salt,avatar,username,is_delete AS isDelete FROM t_user WHERE username = #{username}
+	</select>
+	
+	<!-- 根据UID修改用户密码 -->
+	<!-- Integer updatePassword -->
+	<update id="updatePassword">
+		UPDATE t_user SET password=#{password},modified_user=#{modifiedUser},modified_time=#{modifiedTime} WHERE uid=#{uid};
+	</update>
+	
+	<!-- 根据UID查询数据-->
+	<!-- User findByUid(Intger uid)- -->
+	<select id="findByUid"  resultType="cn.tedu.store.entity.User">
+		SELECT username,phone,gender,email,password,salt,is_delete AS isDelete FROM t_user WHERE uid=#{uid}
+	</select>
+	
+	<!-- 根据UID修改用户数据 -->
+	<!-- Integer updateInfo(User user);-->
+	<update id="updateInfo">
+		UPDATE t_user SET phone=#{phone},email=#{email},gender=#{gender},modified_user=#{modifiedUser},modified_time=#{modifiedTime} WHERE uid = #{uid}
+	</update>
+	
+	<!-- 根据UID修改用户头像 -->
+	<!-- Integer updateAvatar(); -->
+	<update id="updateAvatar">
+		UPDATE t_user SET avatar=#{avatar},modified_user=#{modifiedUser},modified_time=#{modifiedTime} WHERE uid=#{uid};
+	</update>
+</mapper>
