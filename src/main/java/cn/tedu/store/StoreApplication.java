@@ -19,6 +19,7 @@ public class StoreApplication {
 		SpringApplication.run(StoreApplication.class, args);
 	}
 	
+	//上传
 	@Bean
 	public MultipartConfigElement getMultipartConfig(){
 		MultipartConfigFactory factory = new MultipartConfigFactory();
