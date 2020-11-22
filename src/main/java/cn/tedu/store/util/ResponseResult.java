@@ -52,15 +52,11 @@ public class ResponseResult<T> implements Serializable{
 	public double doubleValue() {
 		return state.doubleValue();
 	}
-	public int hashCode() {
-		return state.hashCode();
-	}
-	public boolean equals(Object obj) {
-		return state.equals(obj);
-	}
-	public int compareTo(Integer anotherInteger) {
-		return state.compareTo(anotherInteger);
-	}
+	
+	/**
+	 * get/set方法
+	 * @return
+	 */
 	public Integer getState() {
 		return state;
 	}
@@ -79,6 +75,22 @@ public class ResponseResult<T> implements Serializable{
 	public void setData(T data) {
 		this.data = data;
 	}
+	
+	
+	/**
+	 * hashCode等
+	 */
+	public int hashCode() {
+		return state.hashCode();
+	}
+	public boolean equals(Object obj) {
+		return state.equals(obj);
+	}
+	public int compareTo(Integer anotherInteger) {
+		return state.compareTo(anotherInteger);
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "ResponseResult [state=" + state + ", message=" + message + ", data=" + data + "]";
